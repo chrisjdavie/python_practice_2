@@ -1,4 +1,6 @@
 
+from itertools import islice
+
 # using a decorator to calculate and cache the nth prime
 # this is of course not sensible - using the @ notation
 # to change the inputs in a meaningful way is 
@@ -18,8 +20,7 @@ def ith_value_cached_func_generator(gen_fn, **kwargs):
     def ith_fn(N):
         values_to_calc = N - len(precalced)
 
-        for _, val in zip(range(values_to_calc), values):
-            print(val)
+        for val in islice(values, max(0, values_to_calc)):
             precalced.append(val)
 
         return precalced[N-1]
@@ -43,6 +44,7 @@ def generate_primes(N=10**6):
 
 print(generate_primes(4))
 print(generate_primes(7))
+print(generate_primes(3))
 
 
 
