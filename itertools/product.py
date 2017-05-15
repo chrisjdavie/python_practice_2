@@ -6,7 +6,7 @@ from itertools import product
 for prod in product( [ 1, 2, 3, 4 ], [ 'a', 'b', 'c' ] ):
     print(prod)
 print()
-for prod in product( [ 1, 2, 3 ], [ True, False, True ] , repeat=3):
+for prod in product( [ 1, 2, 3 ], [ True, False ], repeat=3):
     print(prod)
 print()
 for prod in product( [ True, False ], repeat=3):
@@ -114,4 +114,13 @@ def product_rec_gen(pool, r, lower_soln):
 for soln in product_rec_gen(pool, 3, []):
     print(soln)
 
+print()
+
+for res in product(['a', 'b'], [1, 2]):
+    print(res)
+
+print()
+
+for res in product(['a', 'b'], [1, 2], repeat=2):
+    print(res)
 
