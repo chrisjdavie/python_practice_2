@@ -1,7 +1,10 @@
 
 import unittest
 
+from .binary_node import Node
 from .handling_bools import BoolMatrix
+from .resolve_expression_tree import resolve_tree
+
 
 class TestBoolMatrix(unittest.TestCase):
 
@@ -71,5 +74,73 @@ class TestBoolMatrix(unittest.TestCase):
         self.assertEqual(test_A_or__B, B_or__A)
 
 
+class TestNode(unittest.TestCase):
+
+    def test_init(self):
+
+        data_str = 'A'
+        a_node = Node(data_str)
         
+        self.assertEqual(a_node.data, data_str)
+        self.assertIsNone(a_node.left)
+        self.assertIsNone(a_node.right)
+
+
+class TestResolveTree(unittest.TestCase):
+
+
+    def compare_result(self, tree, expected_result):
+
+        result = resolve_tree(tree)
+        self.assertEqual(result, expected_result)
+
+
+    def test_single_node_A(self):
+        test_A = BoolMatrix('A')
+        A_tree = Node('A')
+        self.compare_result(A_tree, test_A)
+
+
+    def test_single_node_B(self):
+        test_B = BoolMatrix('B')
+        B_tree = Node('B')
+        self.compare_result(B_tree, test_B)
+
+
+    def test_and(self):
+        and_tree = Node('and')
+        and_tree.left = Node('A')
+        and_tree.right = Node('B')
+
+        expected = BoolMatrix('A').and_(BoolMatrix('B'))
+        self.compare_result(and_tree, expected)
+
+
+    def test_or(self):
+        or_tree = Node('or')
+        or_tree.left = Node('A')
+        or_tree.right = Node('B')
+
+        expected = BoolMatrix('A').or_(BoolMatrix('B'))
+        self.compare_result(or_tree, expected)
+
+
+    def test_not(self):
+        not_tree = Node('not')
+        not_tree.left = Node('A')
+
+        expected = BoolMatrix('A').not_()
+        self.compare_result(not_tree, expected)
+
+
+    def test_more_than_two_levels(self):
+        ml_tree = Node('and')
+        ml_tree.left = Node('A')
+        ml_tree.right = Node('not')
+        ml_tree.right.left = Node('B')
+
+        expected = BoolMatrix('A').and_(BoolMatrix('B').not_())
+        self.compare_result(ml_tree, expected)
+
+
 

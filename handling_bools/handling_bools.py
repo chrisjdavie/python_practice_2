@@ -17,12 +17,12 @@ class BoolMatrix(list):
 
     def not_(self):
         
-        NOT_self = BoolMatrix()
+        not__self = BoolMatrix()
         for i, row in enumerate(self):
             for j, col in enumerate(row):
-                NOT_self[i][j] = not col
+                not__self[i][j] = not col
 
-        return NOT_self
+        return not__self
 
 
     def __opp_(self, other, opp_):
