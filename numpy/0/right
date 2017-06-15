@@ -1,0 +1,9 @@
+1. Import the numpy package under the name np
+3. Create a null vector of size 10
+7. Create a vector with values ranging from 10 to 49
+8. Reverse a vector (first element becomes last)
+11. Create a 3x3 identity matrix
+13. Create a 10x10 array with random values and find the minimum and maximum values
+14. Create a random vector of size 30 and find the mean value
+
+
